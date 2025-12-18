@@ -1,9 +1,8 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Anh thương iem</title>
-
 <style>
 body{
   margin:0;
@@ -22,18 +21,33 @@ h1{
 p{
   font-size:18px;
   color:#444;
-  line-height:1.6;
+}
+
+#buttons{
+  margin-top:30px;
+  position:relative;
+  height:220px;
 }
 
 button{
-  margin-top:20px;
-  padding:14px 24px;
-  font-size:16px;
+  padding:14px 22px;
+  font-size:15px;
   border:none;
   border-radius:30px;
+  cursor:pointer;
+  transition:all 0.3s ease;
+  max-width:90%;
+}
+
+#yes{
   background:#ff4d88;
   color:white;
-  box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+#no{
+  background:#ccc;
+  color:#333;
+  position:absolute;
 }
 
 .heart{
@@ -55,29 +69,38 @@ button{
 <body>
 
 <h1>💗 Anh thương iem 💗</h1>
-
 <p>
-Anh biết anh đã làm iem buồn 😞<br>
-Anh không giỏi nói lời hoa mỹ<br>
-Nhưng anh thật lòng muốn nói là<br>
-<b>Anh xin lỗi iem rất nhiều 🥺</b><br><br>
-
-Cho anh cơ hội được sửa sai<br>
-Được thương iem nhiều hơn mỗi ngày nhé ❤️
+Anh xin lỗi iem nhó 🥺<br>
+Cho anh cơ hội được sửa sai nhé ❤️
 </p>
 
-<button onclick="thaThu()">Em tha thứ cho anh nhé</button>
+<div id="buttons">
+  <button id="yes" onclick="dongY()">
+    iem đồng ý tha lõiii cho anh 💖
+  </button>
 
-<!-- NHẠC -->
-<audio id="music" loop>
-  <source src="100yearslove.mp3" type="audio/mpeg">
-</audio>
+  <button id="no" onclick="tuChoi()">
+    iemm noooo đồng ý tha lõiii choo anh 💔
+  </button>
+</div>
 
 <script>
-function thaThu(){
-  document.getElementById("music").play();
+let size = 1;
 
-  for(let i=0;i<25;i++){
+function tuChoi(){
+  // nút từ chối chạy trốn
+  const no = document.getElementById("no");
+  no.style.left = Math.random()*80 + "%";
+  no.style.top  = Math.random()*140 + "px";
+
+  // nút đồng ý to dần
+  size += 0.2;
+  document.getElementById("yes").style.transform = `scale(${size})`;
+}
+
+function dongY(){
+  // tim bay
+  for(let i=0;i<30;i++){
     let h=document.createElement("div");
     h.className="heart";
     h.innerText="❤️";
@@ -85,6 +108,9 @@ function thaThu(){
     document.body.appendChild(h);
     setTimeout(()=>h.remove(),2500);
   }
+
+  document.getElementById("buttons").innerHTML =
+    "<h2>💞 Anh cảm ơn iem nhìu lắm 💞<br>Anh hứa sẽ thương iem hơn cả hôm qua 🥰</h2>";
 }
 </script>
 
